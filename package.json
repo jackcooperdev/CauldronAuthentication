@@ -10,8 +10,8 @@
     "./mas": "./MAS.js"
   },
   "author": "JackCooper",
-  "license": "ISC",
-  "description": "",
+  "license": "GPL-3.0-only",
+  "description": "Authentication Controller For CauldronMC",
   "dependencies": {
     "axios": "^1.7.2",
     "jsonwebtoken": "^9.0.2",
