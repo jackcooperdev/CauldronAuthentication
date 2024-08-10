@@ -2,7 +2,7 @@
     "WORKING_DIR":".cauldron",
     "auth": {
         "CLIENT_ID":"3bc68e04-ea19-4135-8acc-9acbeab0fd18",
-        "REDIRECT_URI":"https://api.cauldronmc.com/auth/mcCallback",
-         "VERIFY_CODE":"fiqJYJKLDdzNBVwA7ixJA4LadXnQGmoJKwZ8kCz838U"
+        "REDIRECT_URI":"https://api.cauldronmc.com/microsoft/mcCallback",
+        "VERIFY_CODE":"fiqJYJKLDdzNBVwA7ixJA4LadXnQGmoJKwZ8kCz838U"
     }
 }
