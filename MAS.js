@@ -74,7 +74,7 @@ async function redeemToken(token) {
         //writeToAuthFile(identifier, { refresh_token: response.data.refresh_token })
         return {refresh_token: response.data.refresh_token};
     } catch (err) {
-        //console.log(err)
+        ////console.log(err)
         throw new Error('REDEEMFAIL')
     };
 };
@@ -166,14 +166,14 @@ async function verifyMinecraft(access_token) {
         var verifyData = verify.data;
         var cert = fs.readFileSync(path.join(__dirname, 'mojang.pem'));  // get public key
         const verified = await jwt.verify(verifyData.signature, cert);
-        //console.log(verified)
+        ////console.log(verified)
         if (verified) {
             return true;
         } else {
             return false;
         }
     } catch(err) {
-        //console.log(err)
+        ////console.log(err)
         return false;
     };
 };
