@@ -74,7 +74,7 @@ async function redeemToken(token) {
         //writeToAuthFile(identifier, { refresh_token: response.data.refresh_token })
         return {refresh_token: response.data.refresh_token};
     } catch (err) {
-        ////console.log(err)
+        console.log(err)
         throw new Error('REDEEMFAIL')
     };
 };
