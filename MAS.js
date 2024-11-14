@@ -46,17 +46,18 @@ async function refreshToken(refresh_token,auth) {
 */
 
 
-// Step Two: Redeem Token
+// Step One: Redeem Token
 // Redeems token for access token and refresh token
 
-async function redeemToken(auth,token) {
+async function redeemToken(azureCredentials,token) {
+    console.log(azureCredentials)
     let data = qs.stringify({
-        'client_id': auth.CLIENT_ID,
+        'client_id': azureCredentials.CLIENT_ID,
         'scope': 'XboxLive.signin offline_access',
         'code': token,
-        'redirect_uri': auth.REDIRECT_URI,
+        'redirect_uri': azureCredentials.REDIRECT_URI,
         'grant_type': 'authorization_code',
-        'code_verifier': auth.VERIFY_CODE
+        'code_verifier': azureCredentials.VERIFY_CODE
     });
 
     let config = {
@@ -70,15 +71,13 @@ async function redeemToken(auth,token) {
     };
     try {
         const response = await axios(config);
-        //writeToAuthFile(identifier, { refresh_token: response.data.refresh_token })
         return {refresh_token: response.data.refresh_token};
-    } catch (err) {
-        console.log(err)
+    } catch (err) {rs
         throw new Error('REDEEMFAIL')
     };
 };
 
-// Step Three: Authenticate with Xbox Live
+// Step Two: Authenticate with Xbox Live
 // Authenticated Access Token with Xbox Live returning details about the user XBLIVE account
 async function authenticateXboxLive(access_token) {
     let data = JSON.stringify({ "Properties": { "AuthMethod": "RPS", "SiteName": "user.auth.xboxlive.com", "RpsTicket": `d=${access_token}` }, "RelyingParty": "http://auth.xboxlive.com", "TokenType": "JWT" });
@@ -100,7 +99,7 @@ async function authenticateXboxLive(access_token) {
     };
 };
 
-// Step Four: Authorize with Mojang
+// Step Three: Authorize with Mojang
 // Authroizes the XBLIVE token to access api.minecraftservices.com
 
 async function authorizeMojang(token) {
@@ -123,7 +122,7 @@ async function authorizeMojang(token) {
     }
 };
 
-// Step Five: Authenticate with Minecraft
+// Step Four: Authenticate with Minecraft
 // Authenticates the current user to api.minecraftservices.com
 
 async function authenticateMinecraft(token, xuid) {
@@ -148,7 +147,7 @@ async function authenticateMinecraft(token, xuid) {
     };
 };
 
-//Step Six: Verifies Ownership
+//Step Five: Verifies Ownership
 // Verifies that the user owns a valid license of Minecraft
 
 async function verifyMinecraft(access_token) {
@@ -177,7 +176,7 @@ async function verifyMinecraft(access_token) {
     };
 };
 
-// Step Seven: Get Profile Data
+// Step Six: Get Profile Data
 // Retreives Information regarding the user
 
 async function getProfileData(access_token) {
