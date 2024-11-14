@@ -1,17 +1,8 @@
 const axios = require('axios');
 const qs = require('qs');
 const fs = require('fs');
-const homedir = require('os').homedir();
 const path = require('path');
 const jwt = require('jsonwebtoken');
-
-// Auth Code Varible (Defaults: unset)
-var auth_code = "unset";
-
-// Set Auth Code
-function setAuthCode(code) {
-    auth_code = code;
-};
 
 async function refreshToken(refresh_token,auth) {
     return new Promise(async (resolve) => {
@@ -72,7 +63,7 @@ async function redeemToken(azureCredentials,token) {
         const response = await axios(config);
         return {refresh_token: response.data.refresh_token};
     } catch (err) {
-        throw new Error('REDEEMFAIL')
+        throw new Error('REDEEMFAIL');
     };
 };
 
@@ -200,4 +191,4 @@ async function getProfileData(access_token) {
 
 
 
-module.exports = { setAuthCode,refreshToken, redeemToken, authenticateXboxLive, authorizeMojang, authenticateMinecraft, verifyMinecraft, getProfileData}
+module.exports = {refreshToken, redeemToken, authenticateXboxLive, authorizeMojang, authenticateMinecraft, verifyMinecraft, getProfileData}
