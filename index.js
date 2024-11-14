@@ -12,7 +12,6 @@ async function startAuthenticationFlow(azureCredentials,refresh, accessToken, re
             if (attemptToVerify && !force) {
                 const profileData = await getProfileData(accessToken)
                 toReturn = { profile: profileData.toReturn, xui: restore.xui, access_token: accessToken, user_id: restore.userId };
-                ////console.log(restore)
                 // Restore From Previous
             } else {
                 // Create New Session

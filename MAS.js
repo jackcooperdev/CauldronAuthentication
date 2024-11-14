@@ -50,7 +50,6 @@ async function refreshToken(refresh_token,auth) {
 // Redeems token for access token and refresh token
 
 async function redeemToken(azureCredentials,token) {
-    console.log(azureCredentials)
     let data = qs.stringify({
         'client_id': azureCredentials.CLIENT_ID,
         'scope': 'XboxLive.signin offline_access',
@@ -72,7 +71,7 @@ async function redeemToken(azureCredentials,token) {
     try {
         const response = await axios(config);
         return {refresh_token: response.data.refresh_token};
-    } catch (err) {rs
+    } catch (err) {
         throw new Error('REDEEMFAIL')
     };
 };
@@ -164,14 +163,12 @@ async function verifyMinecraft(access_token) {
         var verifyData = verify.data;
         var cert = fs.readFileSync(path.join(__dirname, 'mojang.pem'));  // get public key
         const verified = await jwt.verify(verifyData.signature, cert);
-        ////console.log(verified)
         if (verified) {
             return true;
         } else {
             return false;
         }
     } catch(err) {
-        ////console.log(err)
         return false;
     };
 };
