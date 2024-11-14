@@ -2,7 +2,7 @@
 const { verifyMinecraft, refreshToken, authenticateXboxLive, authorizeMojang, authenticateMinecraft, getProfileData } = require('./MAS');
 
 
-async function startAuthenticationFlow(refresh, accessToken, restore, force) {
+async function startAuthenticationFlow(auth,refresh, accessToken, restore, force) {
     return new Promise(async (resolve, reject) => {
         try {
             const attemptToVerify = await verifyMinecraft(accessToken);
@@ -17,7 +17,7 @@ async function startAuthenticationFlow(refresh, accessToken, restore, force) {
                 // Restore From Previous
             } else {
                 // Create New Session
-                var tokenRefreshed = await refreshToken(refresh);
+                var tokenRefreshed = await refreshToken(refresh,auth);
                 if (!tokenRefreshed) {
                     throw new Error('No Such Account')
                 };

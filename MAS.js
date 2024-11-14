@@ -4,7 +4,6 @@ const fs = require('fs');
 const homedir = require('os').homedir();
 const path = require('path');
 const jwt = require('jsonwebtoken');
-const appConfig = require('./config.json');
 
 // Auth Code Varible (Defaults: unset)
 var auth_code = "unset";
@@ -14,10 +13,10 @@ function setAuthCode(code) {
     auth_code = code;
 };
 
-async function refreshToken(refresh_token) {
+async function refreshToken(refresh_token,auth) {
     return new Promise(async (resolve) => {
         let data = qs.stringify({
-            'client_id': appConfig.auth.CLIENT_ID,
+            'client_id': auth.CLIENT_ID,
             'scope': 'XboxLive.signin offline_access',
             'refresh_token': refresh_token,
             'grant_type': 'refresh_token'
@@ -50,14 +49,14 @@ async function refreshToken(refresh_token) {
 // Step Two: Redeem Token
 // Redeems token for access token and refresh token
 
-async function redeemToken(token) {
+async function redeemToken(auth,token) {
     let data = qs.stringify({
-        'client_id': appConfig.auth.CLIENT_ID,
+        'client_id': auth.CLIENT_ID,
         'scope': 'XboxLive.signin offline_access',
         'code': token,
-        'redirect_uri': appConfig.auth.REDIRECT_URI,
+        'redirect_uri': auth.REDIRECT_URI,
         'grant_type': 'authorization_code',
-        'code_verifier': appConfig.auth.VERIFY_CODE
+        'code_verifier': auth.VERIFY_CODE
     });
 
     let config = {
