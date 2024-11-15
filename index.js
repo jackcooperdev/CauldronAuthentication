@@ -2,22 +2,20 @@
 const { verifyMinecraft, refreshToken, authenticateXboxLive, authorizeMojang, authenticateMinecraft, getProfileData } = require('./MAS');
 
 
-async function startAuthenticationFlow(auth,refresh, accessToken, restore, force) {
+async function startAuthenticationFlow(azureCredentials,refresh, accessToken, restore, force) {
     return new Promise(async (resolve, reject) => {
         try {
             const attemptToVerify = await verifyMinecraft(accessToken);
-            //////console.log(attemptToVerify)
-            //var returnBody = {toSave:{},toReturn:{}};
+
             var toSave = {};
             var toReturn = {};
             if (attemptToVerify && !force) {
                 const profileData = await getProfileData(accessToken)
                 toReturn = { profile: profileData.toReturn, xui: restore.xui, access_token: accessToken, user_id: restore.userId };
-                ////console.log(restore)
                 // Restore From Previous
             } else {
                 // Create New Session
-                var tokenRefreshed = await refreshToken(refresh,auth);
+                var tokenRefreshed = await refreshToken(refresh,azureCredentials);
                 if (!tokenRefreshed) {
                     throw new Error('No Such Account')
                 };
