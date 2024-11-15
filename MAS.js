@@ -28,8 +28,8 @@ async function refreshToken(refresh_token,auth) {
             (err)
             resolve(false);
         }
-    })
-}
+    });
+};
 
 /*
     Microsoft Authentication Flow:
@@ -180,8 +180,6 @@ async function getProfileData(access_token) {
         const profile = await axios(config)
         var profileData = profile.data;
         return {toSave:{ username: profileData.name, uuid: profileData.id },toReturn:{uuid: profileData.id, username: profileData.name}};
-
-        return {  };
     } catch {
         throw new Error('PROFILEGETERROR');
     }
