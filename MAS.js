@@ -151,8 +151,8 @@ async function verifyMinecraft(access_token) {
     };
     try {
         const verify = await axios(config)
-        var verifyData = verify.data;
-        var cert = fs.readFileSync(path.join(__dirname, 'mojang.pem'));  // get public key
+        let verifyData = verify.data;
+        let cert = fs.readFileSync(path.join(__dirname, 'mojang.pem'));  // get public key
         const verified = await jwt.verify(verifyData.signature, cert);
         if (verified) {
             return true;
@@ -178,7 +178,7 @@ async function getProfileData(access_token) {
     };
     try {
         const profile = await axios(config)
-        var profileData = profile.data;
+        let profileData = profile.data;
         return {toSave:{ username: profileData.name, uuid: profileData.id },toReturn:{uuid: profileData.id, username: profileData.name}};
     } catch {
         throw new Error('PROFILEGETERROR');

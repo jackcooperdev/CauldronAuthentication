@@ -7,15 +7,15 @@ async function startAuthenticationFlow(azureCredentials,refresh, accessToken, re
         try {
             const attemptToVerify = await verifyMinecraft(accessToken);
 
-            var toSave = {};
-            var toReturn = {};
+            let toSave = {};
+            let toReturn = {};
             if (attemptToVerify && !force) {
                 const profileData = await getProfileData(accessToken)
                 toReturn = { profile: profileData.toReturn, xui: restore.xui, access_token: accessToken, user_id: restore.userId };
                 // Restore From Previous
             } else {
                 // Create New Session
-                var tokenRefreshed = await refreshToken(refresh,azureCredentials);
+                let tokenRefreshed = await refreshToken(refresh,azureCredentials);
                 if (!tokenRefreshed) {
                     throw new Error('No Such Account')
                 };
