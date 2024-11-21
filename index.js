@@ -18,7 +18,7 @@ async function startAuthenticationFlow(azureCredentials,refresh, accessToken, re
                 let tokenRefreshed = await refreshToken(refresh,azureCredentials);
                 if (!tokenRefreshed) {
                     throw new Error('No Such Account')
-                };
+                }
                 toSave = Object.assign({}, toSave, tokenRefreshed.toSave);
                 const XBLIVEAUTH = await authenticateXboxLive(tokenRefreshed.toReturn.access_token);
                 const authMojang = await authorizeMojang(XBLIVEAUTH.Token);
@@ -29,13 +29,13 @@ async function startAuthenticationFlow(azureCredentials,refresh, accessToken, re
                 const profileData = await getProfileData(AUTHMC.toReturn.access_token)
                 toSave = Object.assign({}, toSave, profileData.toSave);
                 toReturn = { profile: profileData.toReturn, xui: authMojang.toReturn.DisplayClaims.xui[0].uhs, access_token: AUTHMC.toReturn.access_token, user_id: AUTHMC.toReturn.username };
-            };
+            }
             resolve({ toSave: toSave, toReturn: toReturn });
         } catch (err) {
             reject({ error: err.message });
         }
     });
-};
+}
 
 module.exports = { startAuthenticationFlow };
 
