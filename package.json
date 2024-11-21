@@ -17,5 +17,9 @@
     "jsonwebtoken": "^9.0.2",
     "log4js": "^6.9.1",
     "qs": "^6.12.3"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "~9.0.7",
+    "@types/qs": "~6.9.17"
   }
 }

@@ -25,11 +25,10 @@ async function refreshToken(refresh_token,auth) {
             const response = await axios(config);
             resolve({toSave:{refresh_token: response.data.refresh_token},toReturn:{access_token:response.data.access_token}});
         } catch (err) {
-            (err)
             resolve(false);
         }
     });
-};
+}
 
 /*
     Microsoft Authentication Flow:
@@ -64,8 +63,8 @@ async function redeemToken(azureCredentials,token) {
         return {refresh_token: response.data.refresh_token};
     } catch (err) {
         throw new Error('REDEEMFAIL');
-    };
-};
+    }
+}
 
 // Step Two: Authenticate with Xbox Live
 // Authenticated Access Token with Xbox Live returning details about the user XBLIVE account
@@ -84,13 +83,13 @@ async function authenticateXboxLive(access_token) {
         const authXboxLive = await axios(config);
         return authXboxLive.data;
     } catch (err) {
-        (authXboxLiver)
         throw new Error('XBLIVEAUTHFAIL');
-    };
-};
+    }
+}
 
 // Step Three: Authorize with Mojang
 // Authroizes the XBLIVE token to access api.minecraftservices.com
+
 
 async function authorizeMojang(token) {
     let data = JSON.stringify({ "Properties": { "SandboxId": "RETAIL", "UserTokens": [token] }, "RelyingParty": "rp://api.minecraftservices.com/", "TokenType": "JWT" });
@@ -110,7 +109,7 @@ async function authorizeMojang(token) {
     } catch (err) {
         throw new Error('MOJANGFAIL');
     }
-};
+}
 
 // Step Four: Authenticate with Minecraft
 // Authenticates the current user to api.minecraftservices.com
@@ -134,8 +133,8 @@ async function authenticateMinecraft(token, xuid) {
         return {toSave:{ user_id: mcAuth.data.username, access_token: mcAuth.data.access_token },toReturn:mcAuth.data};
     } catch (err) {
         throw new Error('MINECRAFTFAIL');
-    };
-};
+    }
+}
 
 //Step Five: Verifies Ownership
 // Verifies that the user owns a valid license of Minecraft
@@ -154,15 +153,11 @@ async function verifyMinecraft(access_token) {
         let verifyData = verify.data;
         let cert = fs.readFileSync(path.join(__dirname, 'mojang.pem'));  // get public key
         const verified = await jwt.verify(verifyData.signature, cert);
-        if (verified) {
-            return true;
-        } else {
-            return false;
-        }
+        return !!verified;
     } catch(err) {
         return false;
-    };
-};
+    }
+}
 
 // Step Six: Get Profile Data
 // Retreives Information regarding the user
@@ -183,7 +178,7 @@ async function getProfileData(access_token) {
     } catch {
         throw new Error('PROFILEGETERROR');
     }
-};
+}
 
 
 
