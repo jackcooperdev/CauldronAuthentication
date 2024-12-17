@@ -18,7 +18,14 @@ npm i @jackcooper04/cauldronauthentication --save
 
 ## Using Cauldron Authentication
 
-Cauldron Authentication is split into multiple exports. They are listed below.
+## Information
+
+To use this package, you need to provide a way to get an access token.
+To do this, you need to create an Azure application.
+See [here](https://docs.cauldronmc.com/authentication/authentication) for more information.
+
+[Wiki.vg](https://wiki.vg/) provides lots of information on how various parts of Minecraft works.
+
 
 ## Functions
 
@@ -73,10 +80,3 @@ the function will return two objects one to save in a file and another that can 
 |-------------------------------------------------------|--------------------------------------------|---------------------------------------------|
 | [MAS](https://docs.cauldronmc.com/authentication/mas) | `@jackcooper04/cauldronauthentication/mas` | Provides Access to the individual functions |
 
-## Information
-
-To use this package, you need to provide a way to get an access token.
-To do this, you need to create an Azure application.
-See [here](https://docs.cauldronmc.com/authentication/authentication) for more information.
-
-[Wiki.vg](https://wiki.vg/) provides lots of information on how various parts of Minecraft works.
