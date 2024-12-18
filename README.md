@@ -48,21 +48,14 @@ It takes the following parameters
 - refreshToken (Required)—Refresh Token from original oauth flow
 
 On completion,
-the function will return two objects one to save in a file and another that can be used to launch a Minecraft Session.
+the function will return an object that can be used to launch a Minecraft Instance.
 
 ### Sample Output
 
 ```json
 {
-  "toSave": {
-    "refresh_token": "REFRESH_TOKEN",
-    "xuid": "0000000000000000",
-    "user_id": "aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa",
-    "access_token": "ACCESS_TOKEN",
-    "username": "Notch",
-    "uuid": "069a79f444e94726a5befca90e38aaf5"
-  },
   "toReturn": {
+    "refresh_token": "REFRESH_TOKEN",
     "profile": {
       "uuid": "069a79f444e94726a5befca90e38aaf5",
       "username": "Notch"
