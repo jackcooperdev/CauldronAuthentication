@@ -23,7 +23,7 @@ async function refreshToken(refresh_token,auth) {
         };
         try {
             const response = await axios(config);
-            resolve({toSave:{refresh_token: response.data.refresh_token},toReturn:{access_token:response.data.access_token}});
+            resolve({refresh_token: response.data.refresh_token, access_token:response.data.access_token});
         } catch (err) {
             resolve(false);
         }
@@ -62,12 +62,12 @@ async function redeemToken(azureCredentials,token) {
         const response = await axios(config);
         return {refresh_token: response.data.refresh_token};
     } catch (err) {
-        throw new Error('REDEEMFAIL');
+        throw new Error('REDEEM_FAIL');
     }
 }
 
 // Step Two: Authenticate with Xbox Live
-// Authenticated Access Token with Xbox Live returning details about the user XBLIVE account
+// Authenticated Access Token with Xbox Live returning details about the user XBOX LIVE account
 async function authenticateXboxLive(access_token) {
     let data = JSON.stringify({ "Properties": { "AuthMethod": "RPS", "SiteName": "user.auth.xboxlive.com", "RpsTicket": `d=${access_token}` }, "RelyingParty": "http://auth.xboxlive.com", "TokenType": "JWT" });
     let config = {
@@ -83,12 +83,12 @@ async function authenticateXboxLive(access_token) {
         const authXboxLive = await axios(config);
         return authXboxLive.data;
     } catch (err) {
-        throw new Error('XBLIVEAUTHFAIL');
+        throw new Error('XBOXLIVE_AUTH_FAIL');
     }
 }
 
 // Step Three: Authorize with Mojang
-// Authroizes the XBLIVE token to access api.minecraftservices.com
+// Authorizes the XBOX LIVE token to access api.minecraftservices.com
 
 
 async function authorizeMojang(token) {
@@ -104,10 +104,9 @@ async function authorizeMojang(token) {
     };
     try {
         const authMojang = await axios(config);
-        //writeToAuthFile(email, { xuid: authMojang.data.DisplayClaims.xui[0].uhs });
-        return {toSave:{ xuid: authMojang.data.DisplayClaims.xui[0].uhs},toReturn:authMojang.data};
+        return authMojang.data;
     } catch (err) {
-        throw new Error('MOJANGFAIL');
+        throw new Error('MOJANG_FAIL');
     }
 }
 
@@ -130,9 +129,9 @@ async function authenticateMinecraft(token, xuid) {
     };
     try {
         const mcAuth = await axios(config);
-        return {toSave:{ user_id: mcAuth.data.username, access_token: mcAuth.data.access_token },toReturn:mcAuth.data};
+        return mcAuth.data;
     } catch (err) {
-        throw new Error('MINECRAFTFAIL');
+        throw new Error('MINECRAFT_FAIL');
     }
 }
 
@@ -160,7 +159,7 @@ async function verifyMinecraft(access_token) {
 }
 
 // Step Six: Get Profile Data
-// Retreives Information regarding the user
+// Retrieves Information regarding the user
 
 async function getProfileData(access_token) {
     let config = {
@@ -174,9 +173,9 @@ async function getProfileData(access_token) {
     try {
         const profile = await axios(config)
         let profileData = profile.data;
-        return {toSave:{ username: profileData.name, uuid: profileData.id },toReturn:{uuid: profileData.id, username: profileData.name}};
+        return { username: profileData.name, uuid: profileData.id };
     } catch {
-        throw new Error('PROFILEGETERROR');
+        throw new Error('PROFILE_GET_ERROR');
     }
 }
 
