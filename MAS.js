@@ -1,72 +1,23 @@
 const axios = require('axios');
-const qs = require('qs');
 const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 
-async function refreshToken(refresh_token,auth) {
-    return new Promise(async (resolve) => {
-        let data = qs.stringify({
-            'client_id': auth.CLIENT_ID,
-            'scope': 'XboxLive.signin offline_access',
-            'refresh_token': refresh_token,
-            'grant_type': 'refresh_token'
-        });
-        let config = {
-            method: 'post',
-            maxBodyLength: Infinity,
-            url: 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            data: data
-        };
-        try {
-            const response = await axios(config);
-            resolve({refresh_token: response.data.refresh_token, access_token:response.data.access_token});
-        } catch (err) {
-            resolve(false);
-        }
-    });
-}
+
 
 /*
     Microsoft Authentication Flow:
-    https://wiki.vg/Microsoft_Authentication_Scheme
+    https://minecraft.wiki/w/Microsoft_authentication
+
+    https://blog.jackcooper.me/posts/inside-authenticator
 */
 
+// Step One: Setting up the Azure Application / Getting Microsoft Access Token
 
-// Step One: Redeem Token
-// Redeems token for access token and refresh token
-
-async function redeemToken(azureCredentials,token) {
-    let data = qs.stringify({
-        'client_id': azureCredentials.CLIENT_ID,
-        'scope': 'XboxLive.signin offline_access',
-        'code': token,
-        'redirect_uri': azureCredentials.REDIRECT_URI,
-        'grant_type': 'authorization_code',
-        'code_verifier': azureCredentials.VERIFY_CODE
-    });
-
-    let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        data: data
-    };
-    try {
-        const response = await axios(config);
-        return {refresh_token: response.data.refresh_token};
-    } catch (err) {
-        throw new Error('REDEEM_FAIL');
-    }
-}
+// You need to do this yourself... sorry.
 
 // Step Two: Authenticate with Xbox Live
+
 // Authenticated Access Token with Xbox Live returning details about the user XBOX LIVE account
 async function authenticateXboxLive(access_token) {
     let data = JSON.stringify({ "Properties": { "AuthMethod": "RPS", "SiteName": "user.auth.xboxlive.com", "RpsTicket": `d=${access_token}` }, "RelyingParty": "http://auth.xboxlive.com", "TokenType": "JWT" });
@@ -183,4 +134,4 @@ async function getProfileData(access_token) {
 
 
 
-module.exports = {refreshToken, redeemToken, authenticateXboxLive, authorizeMojang, authenticateMinecraft, verifyMinecraft, getProfileData}
+module.exports = {authenticateXboxLive, authorizeMojang, authenticateMinecraft, verifyMinecraft, getProfileData}
