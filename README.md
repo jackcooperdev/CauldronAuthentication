@@ -22,30 +22,22 @@ npm i @jackcooper04/cauldronauthentication --save
 
 To use this package, you need to provide a way to get an access token.
 To do this, you need to create an Azure application.
-See [here](https://docs.cauldronmc.com/authentication/authentication) for more information.
+See [here](https://blog.jackcooper.me/posts/inside-authenticator) for more information.
 
-[Wiki.vg](https://wiki.vg/) provides lots of information on how various parts of Minecraft works.
+Wiki.vg was a great resource that provided lots of information on how various parts of Minecraft works.
+It has been merged into Minecraft Wiki
+and can be viewed [here](https://minecraft.wiki/w/Microsoft_authentication#Navigation)
 
 
 ## Functions
 
-### startAuthenticationFlow (azureCredentials, refreshToken)
+### startAuthenticationFlow (access_token)
 
-This function performs the authentication flow turning a refresh token into a minecraft access token and getting the profile information for the user.
+This function performs the authentication flow turning a microsoft access token into a minecraft access token and getting the profile information for the user.
 
 It takes the following parameters
 
-- azureCredentials (Required)
-
-```json
-{
-  "CLIENT_ID": "AZURE_CLIENT_ID",
-  "REDIRECT_URI": "REDIRECT_URL",
-  "VERIFY_CODE": "CODE_USED_TO_VERIFY_LOGINS"
-}
-```
-
-- refreshToken (Required)—Refresh Token from original oauth flow
++ `access_token` - Microsoft Access Token Acquired through oAuth flow.
 
 On completion,
 the function will return an object that can be used to launch a Minecraft Instance.
@@ -54,7 +46,6 @@ the function will return an object that can be used to launch a Minecraft Instan
 
 ```json
 {
-  "toReturn": {
     "refresh_token": "REFRESH_TOKEN",
     "profile": {
       "uuid": "069a79f444e94726a5befca90e38aaf5",
@@ -63,7 +54,6 @@ the function will return an object that can be used to launch a Minecraft Instan
     "xui": "0000000000000000",
     "access_token": "ACCESS_TOKEN",
     "user_id": "aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa"
-  }
 }
 ```
 
