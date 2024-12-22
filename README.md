@@ -4,7 +4,7 @@
 
 Cauldron Authentication is responsible
 for authenticating Minecraft Users
-using the [Microsoft Authentication System](https://wiki.vg/Microsoft_Authentication_Scheme)
+using the [Microsoft Authentication System](https://minecraft.wiki/w/Microsoft_authentication)
 which is the only way to log in to Mojang now.
 This package provides all the tools needed to acquire a Minecraft Access token from an oauth token.
 
@@ -46,7 +46,6 @@ the function will return an object that can be used to launch a Minecraft Instan
 
 ```json
 {
-    "refresh_token": "REFRESH_TOKEN",
     "profile": {
       "uuid": "069a79f444e94726a5befca90e38aaf5",
       "username": "Notch"
