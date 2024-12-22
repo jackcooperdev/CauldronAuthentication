@@ -32,7 +32,7 @@ async function authenticateXboxLive(access_token) {
     };
     try {
         const authXboxLive = await axios(config);
-        return authXboxLive.data;
+        return authXboxLive.data.Token;
     } catch (err) {
         throw new Error('XBOXLIVE_AUTH_FAIL');
     }
