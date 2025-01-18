@@ -14,7 +14,7 @@ const jwt = require('jsonwebtoken');
 
 // Step One: Setting up the Azure Application / Getting Microsoft Access Token
 
-// You need to do this yourself... sorry.
+// You need to do this yourself... sorry. Check out this post for information: https://blog.jackcooper.me/posts/inside-authenticator
 
 // Step Two: Authenticate with Xbox Live
 
