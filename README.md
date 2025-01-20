@@ -13,7 +13,7 @@ This package provides all the tools needed to acquire a Minecraft Access token f
 To Install the package, run the following command
 
 ```
-npm i @jackcooper04/cauldronauthentication --save
+npm i @jackcooperdev/cauldronauthentication --save
 ```
 
 ## Using Cauldron Authentication
@@ -60,5 +60,5 @@ the function will return an object that can be used to launch a Minecraft Instan
 
 | Name                                                  | Import                                     | Description                                 |
 |-------------------------------------------------------|--------------------------------------------|---------------------------------------------|
-| [MAS](https://docs.cauldronmc.com/authentication/mas) | `@jackcooper04/cauldronauthentication/mas` | Provides Access to the individual functions |
+| [MAS](https://docs.cauldronmc.com/authentication/mas) | `@jackcooperdev/cauldronauthentication/mas` | Provides Access to the individual functions |
 
