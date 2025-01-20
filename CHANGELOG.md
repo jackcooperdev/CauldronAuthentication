@@ -17,5 +17,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Started CHANGELOG.md for future changes
 
 
-[unreleased]: https://github.com/jackcooper04/CauldronAuthentication/compare/master...development
-[1.3.1]: https://github.com/jackcooper04/CauldronAuthentication/compare/1.3.0...1.3.1
+[unreleased]: https://github.com/jackcooperdev/CauldronAuthentication/compare/master...development
+[1.3.1]: https://github.com/jackcooperdev/CauldronAuthentication/compare/1.3.0...1.3.1
