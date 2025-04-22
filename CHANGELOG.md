@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 22-04-2025
 
+### Changed
+ - Migrated From CommonJS To ESM
 
 ## [1.3.1] - 18-01-2025
 
@@ -19,3 +22,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [unreleased]: https://github.com/jackcooperdev/CauldronAuthentication/compare/master...development
 [1.3.1]: https://github.com/jackcooperdev/CauldronAuthentication/compare/1.3.0...1.3.1
+[1.3.2]: https://github.com/jackcooperdev/CauldronAuthentication/compare/1.3.1...1.3.2

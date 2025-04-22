@@ -1,6 +1,6 @@
 # Cauldron Authentication
 
-> This Documentation is correct for version [1.3.1](https://github.com/jackcooperdev/CauldronAuthentication/releases/tag/1.3.1) of CauldronAuthentication
+> This Documentation is correct for version [1.3.2](https://github.com/jackcooperdev/CauldronAuthentication/releases/tag/1.3.2) of CauldronAuthentication
 
 
 ## What does this do?
