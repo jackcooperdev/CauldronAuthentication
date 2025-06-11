@@ -1,8 +1,8 @@
 {
   "name": "@jackcooperdev/cauldronauthentication",
   "version": "1.3.3",
+  "type": "commonjs",
   "main": "src/index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

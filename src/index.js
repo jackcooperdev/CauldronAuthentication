@@ -1,10 +1,10 @@
-import {
+const {
     verifyMinecraft,
     authenticateXboxLive,
     authorizeMojang,
     authenticateMinecraft,
     getProfileData,
-} from "./MAS.js";
+} = require("./MAS.js");
 
 async function startAuthenticationFlow(microsoftAccessToken) {
     return new Promise(async (resolve, reject) => {
@@ -38,4 +38,4 @@ async function startAuthenticationFlow(microsoftAccessToken) {
     });
 }
 
-export {startAuthenticationFlow};
+module.exports = {startAuthenticationFlow};

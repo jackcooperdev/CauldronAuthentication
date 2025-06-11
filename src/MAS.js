@@ -1,7 +1,7 @@
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import jwt from "jsonwebtoken";
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+const jwt = require("jsonwebtoken");
 
 /*
     Microsoft Authentication Flow:
@@ -139,7 +139,7 @@ async function getProfileData(access_token) {
     }
 }
 
-export {
+module.exports = {
     authenticateXboxLive,
     authorizeMojang,
     authenticateMinecraft,
