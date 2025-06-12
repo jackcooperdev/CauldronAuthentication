@@ -1,7 +1,7 @@
 # Cauldron Authentication
 
 > This Documentation is correct for
-> version [1.3.2](https://github.com/jackcooperdev/CauldronAuthentication/releases/tag/1.3.2) of CauldronAuthentication
+> version [1.3.4](https://github.com/jackcooperdev/CauldronAuthentication/releases/tag/1.3.4) of CauldronAuthentication
 
 ## What does this do?
 
@@ -61,7 +61,7 @@ the function will return an object that can be used to launch a Minecraft Instan
 
 ## Additional Modules
 
-| Name                       | Import                                      | Description                                 |
-|----------------------------|---------------------------------------------|---------------------------------------------|
-| [MAS](/authentication/mas) | `@jackcooperdev/cauldronauthentication/mas` | Provides Access to the individual functions |
+| Name                                                  | Import                                      | Description                                 |
+|-------------------------------------------------------|---------------------------------------------|---------------------------------------------|
+| [MAS](https://docs.cauldronmc.com/authentication/mas) | `@jackcooperdev/cauldronauthentication/mas` | Provides Access to the individual functions |
 
